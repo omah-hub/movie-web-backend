@@ -65,9 +65,9 @@ app.use((req, res, next) => {
           secret: "your-secret-key", // Secret key to sign the session ID cookie
           resave: false, // Don't save session if it's not modified
           saveUninitialized: false, // Don't create a session until something is stored
-          cookie: { secure: false, maxAge: 3600000 }, // 1 hour session expiry
+        //   cookie: { secure: false, maxAge: 3600000 }, // 1 hour session expiry
         })
-      );
+    );
     
     app.use('/api', api)
     

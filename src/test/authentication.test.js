@@ -88,7 +88,7 @@ describe('User Controller - Login', () => {
         });
 
         expect(response.status).toBe(200);
-        expect(response.body.message).toBe('login Successful');
+        expect(response.body.message).toBe('Login Successful');
         expect(response.body.name).toBe(testName);
     });
 
