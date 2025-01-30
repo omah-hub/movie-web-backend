@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
+    "test:comment": "jest ./src/test/comment.test.js",
+    "test:reaction": "jest ./src/test/reaction.test.js",
     "dev": "node index.js"
   },
   "author": "",

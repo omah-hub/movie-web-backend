@@ -12,7 +12,7 @@ async function createUser(userData) {
     console.log("Current time (local):", timestamp); // Show current time in local time here
 
 // Add 2 minutes (in milliseconds) to the current time
-    const expiryDate = new Date(timestamp.getTime() + 2 * 60 * 1000);
+    const expiryDate = new Date(timestamp.getTime() +  24 * 60 * 60 * 1000);
     console.log("Expiry time (local):", expiryDate); //here
     try {
         const { db } = await run();
@@ -26,6 +26,7 @@ async function createUser(userData) {
         console.log(data)
         return {
             ...data,
+            sessionId,
             sessionExpiry: expiryDate, // return expiry date too here
         };
 
@@ -42,7 +43,7 @@ async function updateSession(name) {
 
         // Generate a new session ID and expiry date
         const newSessionId = crypto.randomBytes(16).toString('hex');
-        const newExpiryDate = new Date(Date.now() + 2 * 60 * 1000); // Expiry in 2 minutes here
+        const newExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000); // Expiry in 2 minutes here
 
         // Update the user's session details in the database
         const sessionUpdated = await collection.updateOne(

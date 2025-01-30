@@ -1,7 +1,11 @@
 require('dotenv').config();
 const express = require('express')
-const { run } = require('./src/database/connection')
+const { run, dbConfig } = require('./src/database/connection')
 const api = require('./src/routes/user-route')
+const reactionRoutes = require('./src/routes/reaction-route');
+const CommentRoutes = require('./src/routes/comment-route');
+const TabRoutes = require('./src/routes/tab-route')
+
 const session = require("express-session");
 const cors = require('cors');
 const bodyParser = require('body-parser')
@@ -9,22 +13,7 @@ const bodyParser = require('body-parser')
 
 
 const app = express()
-// const port = port
-
-// let db;
-
-
-let  port, dbName, db;
-
-if (process.env.NODE_ENV === 'test') {
-  databaseUrl = process.env.DATABASE_URL_TEST;
-  port = process.env.PORT_TEST;
-  dbName = process.env.DB_NAME_TEST;
-} else {
-  databaseUrl = process.env.DATABASE_URL_PROD;
-  port = process.env.PORT_PROD;
-  dbName = process.env.DB_NAME_PROD;
-}
+let db;
 
 
 async function initializeDatabase() {
@@ -69,10 +58,14 @@ app.use((req, res, next) => {
         })
     );
     
-    app.use('/api', api)
+    app.use('/api', api);
+    app.use('/api', reactionRoutes);
+    app.use('/api', CommentRoutes);
+    app.use('/api', TabRoutes)
+
     
     app.listen(port, () => {
-        console.log(`App is running on port ${port}`)
+        console.log(`App is running on port ${dbConfig.port}`)
     })
 
 })();

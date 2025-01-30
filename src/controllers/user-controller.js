@@ -86,6 +86,7 @@ async login(req, res, next) {
      // Respond to the client
      res.status(200).json({
          message: "Login Successful",
+         userId: user._id,
          name: user.name,
          sessionId,
          sessionExpiry,
@@ -95,7 +96,18 @@ async login(req, res, next) {
     }
 },
 
-
+// async checkSession (req, res) {
+//     const name = req.body
+//     const response = await getUserByName(name)
+//     console.log("response",response)
+//     // console.log(user)
+//     // const user = Session.getSession(req); // Get session data
+//     // if (user) {
+//     //   return res.json({ isLoggedIn: true, user });
+//     // }
+//     return res.json({ isLoggedIn: false });
+// },
+  
 
 async getUser(req, res, next) {
     const { name } = req.body

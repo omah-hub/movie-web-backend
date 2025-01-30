@@ -1,7 +1,6 @@
 const request = require('supertest');
 const app = require('../../index');
 const { run } = require('../database/connection');
-const { MongoClient } = require('mongodb');
 const bcrypt = require("bcrypt");
 
 
